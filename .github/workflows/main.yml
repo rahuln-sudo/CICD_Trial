@@ -1,4 +1,3 @@
-# .github/workflows/virtuoso-plan.yml
 name: Run Virtuoso Plan
 
 on:
@@ -24,7 +23,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y jq
 
       - name: Make script executable
-        run: chmod +x scripts/run_virtuoso_plan.sh
+        run: chmod +x execute.sh
 
       - name: Run Virtuoso plan
-        run: ./scripts/run_virtuoso_plan.sh
+        run: ./execute.sh
