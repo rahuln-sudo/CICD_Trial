@@ -1,0 +1,30 @@
+# .github/workflows/virtuoso-plan.yml
+name: Run Virtuoso Plan
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-virtuoso-plan:
+    runs-on: ubuntu-latest
+
+    env:
+      VIRTUOSO_TOKEN: ${{ secrets.VIRTUOSO_TOKEN }}
+      PLAN_ID: ${{ vars.PLAN_ID }}
+      PLAN_NAME: ${{ vars.PLAN_NAME }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Make script executable
+        run: chmod +x scripts/run_virtuoso_plan.sh
+
+      - name: Run Virtuoso plan
+        run: ./scripts/run_virtuoso_plan.sh
